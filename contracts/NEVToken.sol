@@ -1,5 +1,6 @@
 import './lib/Standard20Token.sol';
 import './lib/SafeMath.sol';
+import './lib/ens/ENS.sol';
 
 
 pragma solidity ^0.4.11;
@@ -13,17 +14,20 @@ pragma solidity ^0.4.11;
 contract NEVToken is Standard20Token {
     using SafeMath for uint;
 
-    mapping (bytes=> address) gadgetStack;  //Namehash of the gadget => Address of the gadget
+    ENS ens;
+    address minter;
 
-    modifier has(bytes gadget){
-        require(gadgetStack[gadget] != 0x00);
+    modifier onlyMinter{
+        require(minter==msg.sender);
         _;
     }
-    modifier only(string label){
-        bytes memory labelBytes = bytes(label);
-        require(msg.sender == gadgetStack[labelBytes]);
-        _;
+
+    function NEVToken(address _ens_address, bytes32 _token_node, address _minter){
+        ens=ENS(_ens_address);
+        require(ens.owner(_token_node)==msg.sender); //Thows if the provided node is not owned by the sender
+        minter= _minter; //TODO: Generalize and set to the registrar
     }
+
     /**
     * @dev Mints an additional amount of tokens, only available for the Minter
     * @param _recipient Address that will receive the new created supply
@@ -62,7 +66,7 @@ contract NEVToken is Standard20Token {
     **/
     function externalMint(address _recipient, uint256 _value)
         external
-        only("minter")
+        onlyMinter
         returns (bool _success){
         if(!mint(_recipient, _value)) throw;
         return true;
@@ -75,7 +79,7 @@ contract NEVToken is Standard20Token {
     **/
     function externalDestroy(address _recipient, uint256 _value)
         external
-        only("minter")
+        onlyMinter
         returns (bool _success){
         if(!destroy(_recipient, _value)) throw;
         return true;
