@@ -1,0 +1,91 @@
+{
+  "contract_name": "Minted",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minter",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newMinter",
+          "type": "address"
+        }
+      ],
+      "name": "changeMinter",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "managed",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lastMint",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_addr",
+          "type": "address"
+        }
+      ],
+      "name": "isMinter",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "oldMinter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newMinter",
+          "type": "address"
+        }
+      ],
+      "name": "MinterChanged",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000600155341561001157fe5b5b6101ef806100216000396000f300606060405263ffffffff60e060020a60003504166307546172811461004d5780632c4d4d18146100795780632fc65c3614610097578063586fc5b5146100a9578063aa271e1a146100cb575bfe5b341561005557fe5b61005d6100fb565b60408051600160a060020a039092168252519081900360200190f35b341561008157fe5b610095600160a060020a036004351661010a565b005b341561009f57fe5b610095610188565b005b34156100b157fe5b6100b96101a6565b60408051918252519081900360200190f35b34156100d357fe5b6100e7600160a060020a03600435166101ac565b604080519115158252519081900360200190f35b600054600160a060020a031681565b60005433600160a060020a039081169116146101265760006000fd5b60008054600160a060020a031916600160a060020a0383811691821790925560408051339093168352602083019190915280517f3b0007eb941cf645526cbb3a4fdaecda9d28ce4843167d9263b536a1f1edc0f69281900390910190a15b5b50565b60008054600160a060020a03191633600160a060020a03161790555b565b60015481565b600054600160a060020a038281169116145b9190505600a165627a7a723058209921122110fc05c25ce562a91d2f82bac9a9254b9bf5c4e92318442e1733ed810029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1502968928461
+}

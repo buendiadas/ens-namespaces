@@ -1,0 +1,33 @@
+{
+  "name": "nevtoken",
+  "version": "0.0.1",
+  "description": "NEVToken aims to create a new pattern in token design, where variables regarding the token economy are modular and can evolve by unlimited forks",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buendiadas/nevtoken.git"
+  },
+  "keywords": [
+    "upgradeable",
+    "token",
+    "ethereum"
+  ],
+  "author": "buendiadas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buendiadas/nevtoken/issues"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "eth-ens-namehash": "^1.0.2",
+    "ethereumjs-testrpc": "^3.0.0",
+    "solc": "^0.4.9"
+  },
+  "homepage": "https://github.com/buendiadas/nevtoken#readme"
+}

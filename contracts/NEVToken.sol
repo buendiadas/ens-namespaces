@@ -1,10 +1,5 @@
 import './lib/Standard20Token.sol';
-import './lib/Minted.sol';
-import './lib/Managed.sol';
-import './interface/VaultInterface.sol';
-import './interface/VaoInterface.sol';
 import './lib/SafeMath.sol';
-
 
 
 pragma solidity ^0.4.11;
@@ -15,20 +10,20 @@ pragma solidity ^0.4.11;
  * @dev NEVToken aims to create a new pattern in token design, where variables regarding the token economy are modular and can evolve by unlimited forks
  */
 
-contract NEVToken is Standard20Token { // TODO Check how to reduce inheritance
+contract NEVToken is Standard20Token {
     using SafeMath for uint;
 
     mapping (bytes=> address) gadgetStack;  //Namehash of the gadget => Address of the gadget
 
-    modifier has(bytes32 gadget){
+    modifier has(bytes gadget){
         require(gadgetStack[gadget] != 0x00);
         _;
     }
     modifier only(string label){
-      bytes memory labelBytes = bytes(s);
-      require(msg.sender == gadgetStack[labelBytes])
+        bytes memory labelBytes = bytes(label);
+        require(msg.sender == gadgetStack[labelBytes]);
+        _;
     }
-
     /**
     * @dev Mints an additional amount of tokens, only available for the Minter
     * @param _recipient Address that will receive the new created supply
@@ -53,6 +48,7 @@ contract NEVToken is Standard20Token { // TODO Check how to reduce inheritance
     function destroy(address _recipient, uint256 _value)
         internal
         returns (bool _success){
+        require (balances[_recipient]>=_value);
         balances[_recipient]=balances[_recipient].sub(_value);
         totalSupply=totalSupply.sub(_value);
         Destroy(_recipient, _value);
@@ -92,12 +88,11 @@ contract NEVToken is Standard20Token { // TODO Check how to reduce inheritance
     **/
 
     function upgrade(address _version, uint256 _amount)
-        upgradeAllowed
         returns (bool _success){
-        NEVToken nevToken=NEVToken(_version);
+        NEVToken childToken=NEVToken(_version);
         if (_amount == 0) throw;
         if(!destroy(msg.sender, _amount)) throw;
-        if (!childVAO.upgradeFrom(msg.sender, _amount)) throw;
+        if (!childToken.upgradeFrom(msg.sender, _amount)) throw;
         Upgrade(msg.sender, _version, _amount);
         return true;
     }
@@ -108,11 +103,11 @@ contract NEVToken is Standard20Token { // TODO Check how to reduce inheritance
     * Before changing this method, be sure that the only point calling to this method is upgrade
     * @param _account Account that has decided to upgrade the tokens
     * @param _amount Amount that has been destroyed in this contract.
+    * TODO: Check restriction to parent
     *
     **/
 
     function upgradeFrom(address _account, uint256 _amount)
-        onlyParent
         returns (bool _success){
         if(!mint(_account,_amount)) throw;
         return true;
@@ -124,6 +119,8 @@ contract NEVToken is Standard20Token { // TODO Check how to reduce inheritance
     //********************************************************
 
     event Mint(address indexed _to, uint256 _value);
+    event Destroy(address indexed _to, uint256 _value);
     event Upgrade (address _from, address _version, uint256 _amount);
+
 
 }
