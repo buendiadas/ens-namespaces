@@ -2,16 +2,22 @@
 
 ## Intro
 
-NEVToken aims to create a new pattern in token design, where variables regarding the token economy are modular and can evolve by unlimited forks.
+NEVToken defines a design pattern for tokens created with investment purposes, where the token is not considered a standalone structure, but the center point of a set of unlimited Smart Contracts defining its value. Logic behind the token (and its value) is considered in different pieces using its basic functions and can be proposed to be changed by anyone, creating a new child upgrade. 
 
-NEV Tokens only define functionallities to modify supply and upgrade mechanisms. Any smart contract variable or functionallity needed to modify the value of the token (via usage of this functions) is substituted by ENS subnodes, being the token the registered master node.
-
-Given that every token holder has agreed with the state of the contract in which he proceed to buy, any addition or change in the current state of the token should be optional for him. Thus, a child fork is created from this token, so he can decide to move his stakes and upgrade, or stay. 
+Token holders can then decide to upgrade to any new functionality, by moving its tokens to the new upgrade proposal.
 
 
-## Rationale
 
-## Requirements
+
+## Specification
+
+
+Investment tokens are mainly based on three different mechanisms:
+
+- Aggregation of different tokens (constituying a portfolio).
+- Supply creation and destruction of the token and the rest of its assets under management (AUM).
+- Market rules (Buy/Sell mechanisms) regarding its AUM. 
+
 
 ## Interface
 
