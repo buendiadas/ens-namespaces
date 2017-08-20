@@ -65,13 +65,6 @@ function deployAuctionRegistrar(deployer, tld) {
 }
 
 module.exports = function(deployer, network) {
-  var tld = 'eth';
-
-  if (network === 'dev.fifs') {
+    var tld = 'eth';
     deployFIFSRegistrar(deployer, tld);
-  }
-  else if (network === 'dev.auction') {
-    deployAuctionRegistrar(deployer, tld);
-  }
-
 };

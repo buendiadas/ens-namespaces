@@ -285,9 +285,10 @@
           "type": "event"
         }
       },
-      "updated_at": 1502971869561
+      "updated_at": 1503235965268,
+      "address": "0x4369e316a8bbbe40a73bb23a181d9526fc73c02f"
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1502990134220
+  "updated_at": 1503235965268
 }
