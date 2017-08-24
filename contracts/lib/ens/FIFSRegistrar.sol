@@ -6,7 +6,7 @@ import './AbstractENS.sol';
  * A registrar that allocates subdomains to the first person to claim them.
  */
 contract FIFSRegistrar {
-    AbstractENS ens;
+    AbstractENS public ens;
     bytes32 rootNode;
 
     modifier only_owner(bytes32 subnode) {

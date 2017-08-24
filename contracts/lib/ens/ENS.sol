@@ -12,7 +12,7 @@ contract ENS is AbstractENS {
         uint64 ttl;
     }
 
-    mapping(bytes32=>Record) records;
+    mapping(bytes32=>Record) public records;
 
     // Permits modifications only by the owner of the specified node.
     modifier only_owner(bytes32 node) {
