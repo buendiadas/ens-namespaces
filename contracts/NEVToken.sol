@@ -16,6 +16,7 @@ contract NEVToken is Standard20Token {
 
     ENS ens;
     address minter;
+    address node;
 
     modifier onlyMinter{
         require(minter==msg.sender);
@@ -25,6 +26,7 @@ contract NEVToken is Standard20Token {
     function NEVToken(address _ens_address, bytes32 _token_node, address _minter){
         ens=ENS(_ens_address);
         require(ens.owner(_token_node)==msg.sender); //Thows if the provided node is not owned by the sender
+        node= _token_node;
         minter= _minter; //TODO: Generalize and set to the registrar
     }
 
