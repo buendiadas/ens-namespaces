@@ -4,6 +4,8 @@
 
 NEVToken defines a design pattern for tokens created with investment purposes, where the token is not considered a standalone structure, but the center point of a set of unlimited Smart Contracts defining its value. Logic behind the token (and its value) is considered in different pieces using its basic functions and can be proposed to be changed by anyone, creating a new child upgrade. 
 
+In order to make this possible, each of them is defined in an ENS node, and each functionallity is defined and standarized in different subnodes. 
+
 Token holders can then decide to upgrade to any new functionality, by moving its tokens to the new upgrade proposal.
 
 
